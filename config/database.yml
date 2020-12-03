@@ -1,0 +1,19 @@
+development: &development
+  adapter:  postgresql
+  encoding: unicode
+  url:  postgresql://tlc:tlc@localhost:5433/demo-rails6-dev
+  pool: <%= ENV["DB_POOL"] || ENV['MAX_THREADS'] || 16 %>
+
+test: &test
+  adapter:  postgresql
+  encoding: unicode
+  url: postgresql://tlc:tlc@localhost:5433/demo-rails6-test
+  pool: <%= ENV["DB_POOL"] || ENV['MAX_THREADS'] || 16 %>
+
+production: &production
+  prepared_statements: false
+  connect_timeout: 3 # sec
+  adapter:  postgresql
+  encoding: unicode
+  url:  <%= ENV["DATABASE_URL"] %>
+  pool: <%= ENV["DB_POOL"] || ENV['RAILS_MAX_THREADS'] || 5 %>
